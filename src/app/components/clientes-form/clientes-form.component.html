@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="tittleCenter mt-4">
+        <h2>
+            {{tittleComponent}}
+        </h2>
+        <button [disabled]="disabledButton" class="btn btn-primary" (click)="crearCliente()" *ngIf="!cliente.id_cliente">Crear
+        </button>
+        <button [disabled]="disabledButton" class="btn btn-primary" (click)="actualizarCliente()" *ngIf="cliente.id_cliente">Actualiar
+        </button>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
+                
+                <form class="row g-3 needs-validation">
+                    <div class="col-md-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input (change)="validateForm()" [(ngModel)]="cliente.nombre" type="text" class="form-control" name="nombre" required>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="nombre" class="form-label">Apellido</label>
+                        <input (change)="validateForm()" [(ngModel)]="cliente.apellido" type="text" class="form-control" name="apellido" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="nombre" class="form-label">Fecha de nacimiento</label>
+                        <input (change)="validateForm()" required type="date" class="form-control" name="fecha_nacimiento"
+                        [(ngModel)]="cliente.fecha_nacimiento">
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="nombre" class="form-label">Telefono</label>
+                        <input type="number" class="form-control" name="telefono" [(ngModel)]="cliente.telefono" required>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="apellido" class="form-label">Email</label>
+                        <input type="email" class="form-control"  name="email" [(ngModel)]="cliente.email"  required>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="apellido" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" name="direccion" [(ngModel)]="cliente.direccion"  required>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

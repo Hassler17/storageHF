@@ -1,0 +1,10 @@
+.tittleCenter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.buttonSpacing {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}

@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="tittleCenter mt-4">
+        <h2>
+            {{tittleComponent}}
+        </h2>
+        <button [disabled]="disabledButton" class="btn btn-primary" (click)="crearProducto()" *ngIf="!producto.id_producto">Crear
+        </button>
+        <button [disabled]="disabledButton" class="btn btn-primary" (click)="actualizarProducto()" *ngIf="producto.id_producto">Actualiar
+        </button>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
+                
+                <form class="row g-3 needs-validation">
+                    <div class="col-md-4">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input (change)="validateForm()" [(ngModel)]="producto.nombre" type="text" class="form-control" name="nombre" required>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label for="nombre" class="form-label">Precio</label>
+                        <input (change)="validateForm()" [(ngModel)]="producto.precio" type="number" class="form-control" name="precio" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="nombre" class="form-label">Stock</label>
+                        <input (change)="validateForm()" required type="text" class="form-control" name="stock"
+                        [(ngModel)]="producto.stock">
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <label for="nombre" class="form-label">Imagen</label>
+                        <input (change)="validateForm()" type="text" class="form-control" name="imagen" [(ngModel)]="producto.imagen" required>
+                    </div>
+            
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

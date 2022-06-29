@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="tittleCenter mt-4">
+    <h2>
+      Listado de Facturas
+    </h2>
+    <button [routerLink]="['formFactura']" class="btn btn-primary">Nueva Factura</button>
+  </div>
+  <nav class="navbar bg-light ">
+    <div class="container-fluid">
+
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Detalles de la Factura {{idFactura}}</h5>
+          <button type="button" (click)="setCountsFactura()" class="btn-close" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="list-group">
+            <li class="list-group-item active" aria-current="true">Productos agregados</li>
+            <li *ngFor="let productoAgregado  of productosAgregados"
+              class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">{{productoAgregado.nombre}}</div>
+                <span>Total: </span> <b>{{productoAgregado.total | currency: 'USD'}}</b>
+              </div>
+              <h3><span class="badge bg-primary rounded-pill">{{productoAgregado.cantidad}}</span>
+              </h3>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 ">
+                <span>Total a Pagar: </span> <b class="text-danger"> {{pagoTotalFactura | currency: 'USD'}}</b>
+              </div>
+
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <br />
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th class="text-center" scope="col">Numero Factura</th>
+        <th class="text-center" scope="col">Fecha</th>
+        <th class="text-center" scope="col">Cliente</th>
+        <th class="text-center" scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let factura of facturas">
+        <th class="text-center" scope="row">{{factura.num_factura}}</th>
+        <td class="text-center">{{factura.fecha | date: 'dd/MM/YYYY'}}</td>
+        <td class="text-center">{{factura.cliente?.nombre}} {{factura.cliente?.apellido}}</td>
+        <td class="text-center">
+          <button class="btn btn-info me-2" [routerLink]="['formFactura', factura.num_factura]">Editar</button>
+          <button class="btn btn-danger me-2" (click)="deleteFactura(factura.num_factura)">Eliminar</button>
+          <button class="btn btn-warning me-2" (click)="getDetalles(factura.num_factura)" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">Detalle</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

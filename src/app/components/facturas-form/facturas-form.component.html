@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="tittleCenter mb-3 mt-4">
+        <h2>
+            {{tittleComponent}}
+        </h2>
+        <button [disabled]="disabledButton" type="submit" class="btn btn-primary" *ngIf="!factura.num_factura" (click)="crearFactura()">Crear
+        </button>
+        <button [disabled]="disabledButton" type="submit" class="btn btn-primary" *ngIf="factura.num_factura" (click)="actualizarFactura()">Actualiar
+        </button>
+    </div>
+    <form class="row g-2 shadow-lg p-3 mb-5 mt-4 bg-body rounded">
+        <div class="row">
+            <div class="col-md-4 col-form-label">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input (change)="validateForm()" required type="date" class="form-control" name="fecha"
+                    [(ngModel)]="factura.fecha">
+            </div>
+
+            <div class="col-md-4 ">
+                <label for="cliente" class="col-form-label col-sm-3">Cliente</label>
+                <select [compareWith]="CompararCliente" (change)="validateForm()" [(ngModel)]="factura.cliente" class="form-select" name="cliente">
+                    <option [ngValue]="undefined">--- Selecciona un Cliente ---</option>
+                    <option *ngFor="let cliente of clientes" [ngValue]="cliente">{{cliente.nombre}}
+                        {{cliente.apellido}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseOne">
+                            Detalles - Total a pagar {{totalGeneral | currency: 'USD'}}
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                        aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <ol class="list-group list-group-numbered">
+                                <li *ngFor="let productoAgregado  of productosAgregados"
+                                    class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">{{productoAgregado.nombre}}</div>
+                                        <span>Total: </span> <b>{{productoAgregado.total | currency: 'USD'}}</b>
+                                    </div>
+                                    <h3><span class="badge bg-primary rounded-pill">{{productoAgregado.cantidad}}</span>
+                                    </h3>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseTwo">
+                            Productos
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="accordion-body">
+                            <div class="mb-3">
+                                <div class="row row-cols-1 row-cols-md-5 g-4">
+                                    <div *ngFor="let producto  of productos" class="card" class="col">
+                                        <div class="card h-100">
+                                            <div class="containerImage">
+                                                <img class='card__img' src={{producto.imagen}}>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{producto.nombre}}</h5>
+                                                <span>Precio: </span> <b>{{producto.precio | currency: 'USD'}}</b> <br />
+                                                <span>Stock: </span> <b>{{producto.stock}}</b> <br />
+                                                <div class="card-footer">
+                                                    <div class="btn-group centerItems">
+                                                        <button
+                                                            (click)="agregarItem(producto.id_producto, producto.nombre, producto.precio)"
+                                                            type="button" class="btn btn-info ml-2">➕</button>
+                                                        <button
+                                                            (click)="removerItem(producto.id_producto, producto.precio)"
+                                                            type="button" class="btn btn-danger">➖</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,44 @@
+.centerItems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonSave {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.cardAnimation:hover {
+    box-shadow: 0px 0px 25px 2px rgb(176, 185, 188);
+    transform:scale(0.95);
+}
+
+.tittleCenter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__img{
+    border: 3px solid #547190;
+    border-radius: 50%; 
+  }
+
+  .card img{
+    width: 100px; 
+    height: 100px;		
+  }
+
+  .card img:hover{
+    opacity: 0.4;
+    content:'show';
+  }
+
+  .containerImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+  }

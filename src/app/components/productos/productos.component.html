@@ -1,0 +1,30 @@
+<div class="container">
+    <br />
+    <div class="tittleCenter">
+        <h2>
+            Listado de productos
+        </h2>
+        <button [routerLink]='["/formProducto"]' routerLinkActive="active" class="btn btn-info me-2">Nuevo
+            Producto</button>
+    </div>
+    <br />
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-between">
+        <div *ngFor="let producto  of productos" class="card cardAnimation" style="max-width: 33%;">
+            <div class="row g-0">
+                <div class="col-md-4" style="margin-top: 5%;">
+                    <img class='card__img' src={{producto.imagen}}>
+                </div>
+                <div class="col-md-8  mr-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{producto.nombre}}</h5>
+                        <span>Precio: </span> <b>{{producto.precio | currency: 'USD'}}</b> <br />
+                        <span>Stock: </span> <b>{{producto.stock}}</b> <br />
+                        <div class="card-footer centerItems">
+                            <button class="btn btn-info me-2" style="margin-top: 1%;" [routerLink]="['/formProducto', producto.id_producto]">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
