@@ -5,7 +5,7 @@
         </h2>
         <button [disabled]="disabledButton" type="submit" class="btn btn-primary" *ngIf="!factura.num_factura" (click)="crearFactura()">Crear
         </button>
-        <button [disabled]="disabledButton" type="submit" class="btn btn-primary" *ngIf="factura.num_factura" (click)="actualizarFactura()">Actualiar
+        <button [disabled]="disabledButton" type="submit" class="btn btn-primary" *ngIf="factura.num_factura" (click)="actualizarFactura()">Actualizar
         </button>
     </div>
     <form class="row g-2 shadow-lg p-3 mb-5 mt-4 bg-body rounded">
