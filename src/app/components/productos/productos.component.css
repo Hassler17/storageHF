@@ -18,10 +18,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .card__img{
-    border: 3px solid #547190;
+    border: 3px solid #0d6efd;
     border-radius: 50%; 
   }
 
